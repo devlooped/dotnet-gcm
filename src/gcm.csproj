@@ -1,0 +1,55 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup Label="CI" Condition="'$(CI)' == ''">
+    <CI>false</CI>
+    <CI Condition="'$(TF_BUILD)' == 'true'">true</CI>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Authors>kzu</Authors>
+    <Description>A dotnet global tool for managing Git credentials using the Microsoft Git Credentials Manager Core.</Description>
+
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Deterministic>true</Deterministic>
+    <DebugType>embedded</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <Nullable>enable</Nullable>
+    <LangVersion>Preview</LangVersion>
+
+    <AssemblyName>gcm</AssemblyName>
+    <RootNamespace>DotNet</RootNamespace>
+
+    <VersionPrefix>42.42.42</VersionPrefix>
+
+    <PackageId>dotnet-gcm</PackageId>
+    <ToolCommandName>dotnet-gcm</ToolCommandName>
+    <PackAsTool>true</PackAsTool>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <GenerateRepositoryUrlAttribute>true</GenerateRepositoryUrlAttribute>
+
+    <!-- Because it's sooo much better than GeneratePackageOnBuild! -->
+    <PackOnBuild Condition="$(CI) or '$(BuildingInsideVisualStudio)' != 'true'">true</PackOnBuild>
+    <GeneratePackageOnBuild>$(PackOnBuild)</GeneratePackageOnBuild>
+    <PackageOutputPath Condition="'$(PackageOutputPath)' == ''">$(MSBuildThisFileDirectory)..\bin</PackageOutputPath>
+    <DefaultItemExcludes>$(DefaultExcludeItems);*.binlog</DefaultItemExcludes>
+
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="all" />
+    <PackageReference Include="System.CommandLine" Version="2.0.0-beta1.20371.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\gcm\src\shared\Atlassian.Bitbucket\Atlassian.Bitbucket.csproj" />
+    <ProjectReference Include="..\gcm\src\shared\GitHub\GitHub.csproj" />
+    <ProjectReference Include="..\gcm\src\shared\Microsoft.AzureRepos\Microsoft.AzureRepos.csproj" />
+    <ProjectReference Include="..\gcm\src\shared\Microsoft.Git.CredentialManager\Microsoft.Git.CredentialManager.csproj" />
+  </ItemGroup>
+  
+</Project>
