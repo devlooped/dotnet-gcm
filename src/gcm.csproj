@@ -7,7 +7,20 @@
 
   <PropertyGroup>
     <Authors>kzu</Authors>
-    <Description>A dotnet global tool for managing Git credentials using the Microsoft Git Credentials Manager Core.</Description>
+    <Description>A dotnet global tool for managing Git credentials using the Microsoft Git Credentials Manager Core.
+    
+Usage:
+  gcm [options] [command]
+
+Options:
+  --version         Show version information
+  -?, -h, --help    Show help and usage information
+
+Commands:
+  erase    Erase a stored credential.
+  get      Get a stored credential.
+  store    Store a credential.
+</Description>
 
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
