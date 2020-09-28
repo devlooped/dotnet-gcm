@@ -1,4 +1,4 @@
-![Icon](icon.png) dotnet-gcm
+![Icon](https://raw.githubusercontent.com/kzu/dotnet-gcm/main/icon.png) dotnet-gcm
 ============
 
 [![Version](https://img.shields.io/nuget/v/dotnet-gcm.svg?color=royalblue)](https://www.nuget.org/packages/dotnet-gcm)
