@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.CommandLine;
 using System.CommandLine.Invocation;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using Atlassian.Bitbucket;
 using GitHub;
@@ -21,13 +23,36 @@ namespace gcm
             Environment.SetEnvironmentVariable("GCM_INTERACTIVE", "never", EnvironmentVariableTarget.Process);
             Environment.SetEnvironmentVariable("GIT_TERMINAL_PROMPT", "false", EnvironmentVariableTarget.Process);
 
-            var context = new CommandContext();
+            var context = new CommandContext(GetApplicationPath());
             providers = new IHostProvider[]
             {
                 new GitHubHostProvider(context),
                 new BitbucketHostProvider(context),
                 new AzureReposHostProvider(context),
             };
+        }
+
+        // See GCM's Program.cs
+        static string GetApplicationPath()
+        {
+            // Assembly::Location always returns an empty string if the application was published as a single file
+#pragma warning disable IL3000
+            bool isSingleFile = string.IsNullOrEmpty(Assembly.GetEntryAssembly()?.Location);
+#pragma warning restore IL3000
+
+            // Use "argv[0]" to get the full path to the entry executable - this is consistent across
+            // .NET Framework and .NET >= 5 when published as a single file.
+            string[] args = Environment.GetCommandLineArgs();
+            string candidatePath = args[0];
+
+            // If we have not been published as a single file on .NET 5 then we must strip the ".dll" file extension
+            // to get the default AppHost/SuperHost name.
+            if (!isSingleFile && Path.HasExtension(candidatePath))
+            {
+                return Path.ChangeExtension(candidatePath, null);
+            }
+
+            return candidatePath;
         }
 
         static async Task Main(string[] args)
@@ -50,7 +75,7 @@ namespace gcm
                 {
                     IsRequired = true
                 },
-                new Option<string?>(new string[] { "--path", }, "The path with which the credential will be used. E.g., for accessing a remote https repository, this will be the repository's path on the server."),
+                new Option<string?>("--path", "The path with which the credential will be used. E.g., for accessing a remote https repository, this will be the repository's path on the server."),
             };
             store.Handler = CommandHandler.Create<string, string, string, string, string>(StoreAsync);
 
@@ -64,7 +89,7 @@ namespace gcm
                 {
                     IsRequired = true
                 },
-                new Option<string?>(new string[] { "--path", }, "The path with which the credential will be used. E.g., for accessing a remote https repository, this will be the repository's path on the server."),
+                new Option<string?>("--path", "The path with which the credential will be used. E.g., for accessing a remote https repository, this will be the repository's path on the server."),
             };
             erase.Handler = CommandHandler.Create<string, string, string?>(EraseAsync);
 
@@ -78,7 +103,7 @@ namespace gcm
                 {
                     IsRequired = true
                 },
-                new Option<string?>(new string[] { "--path", }, "The path with which the credential will be used. E.g., for accessing a remote https repository, this will be the repository's path on the server."),
+                new Option<string?>("--path", "The path with which the credential will be used. E.g., for accessing a remote https repository, this will be the repository's path on the server."),
             };
             get.Handler = CommandHandler.Create<string, string, string?>(GetAsync);
 
