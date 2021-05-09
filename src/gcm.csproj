@@ -23,7 +23,7 @@ Commands:
 </Description>
 
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFrameworks>netcoreapp2.1;netcoreapp3.1;net5.0</TargetFrameworks>
     <Deterministic>true</Deterministic>
     <DebugType>embedded</DebugType>
     <DebugSymbols>true</DebugSymbols>
@@ -55,8 +55,8 @@ Commands:
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
   </PropertyGroup>
 
-  <ItemGroup>
-    <None Update="nuget.png" Pack="true" PackagePath="icon.png" />
+  <ItemGroup> 
+    <Content Include="nuget.png" Pack="true" PackagePath="icon.png" />
   </ItemGroup>
 
   <ItemGroup>
