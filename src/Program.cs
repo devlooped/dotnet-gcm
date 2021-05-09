@@ -148,7 +148,7 @@ namespace gcm
                             {
                                 "--protocol",
                                 uri.Scheme,
-                                "--host", 
+                                "--host",
                                 uri.Host,
                             };
                             if (uri.TryGetUserInfo(out var user, out var password))
@@ -186,7 +186,7 @@ namespace gcm
             };
 
             if (!string.IsNullOrEmpty(path))
-                arguments[nameof(path)] = path;
+                arguments[nameof(path)] = path!;
 
             var input = new InputArguments(arguments);
             var provider = GetProvider(input);
@@ -203,7 +203,7 @@ namespace gcm
             };
 
             if (!string.IsNullOrEmpty(path))
-                arguments[nameof(path)] = path;
+                arguments[nameof(path)] = path!;
 
             try
             {
@@ -234,7 +234,7 @@ namespace gcm
             };
 
             if (!string.IsNullOrEmpty(path))
-                arguments[nameof(path)] = path;
+                arguments[nameof(path)] = path!;
 
             var input = new InputArguments(arguments);
             var provider = GetProvider(input);
