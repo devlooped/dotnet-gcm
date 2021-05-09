@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.CommandLine;
+using System.CommandLine.Builder;
 using System.CommandLine.Invocation;
+using System.CommandLine.Parsing;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -57,62 +59,116 @@ namespace gcm
 
         static async Task Main(string[] args)
         {
-            var store = new Command("store", "Store a credential.")
+            var root = new RootCommand
             {
-                new Option<string>(new string[] { "--protocol", "-p" }, "The protocol over which the credential will be used (e.g., https).")
+                new Command("get", "Get a stored credential.")
                 {
-                    IsRequired = true
-                },
-                new Option<string>(new string[] { "--host", "-h" }, "The remote hostname for a network credential. This can include the port number.")
+                    new Argument<Uri?>("url", "A URL used to populate options from a single value: [protocol]://[host]/[path?]")
+                    {
+                        Arity = ArgumentArity.ZeroOrOne
+                    },
+                    new Option<string>(new string[] { "--protocol", "-p" }, "The protocol over which the credential will be used (e.g., https).")
+                    {
+                        IsRequired = true
+                    },
+                    new Option<string>(new string[] { "--host", "-h" }, "The remote hostname for a network credential. This can include the port number.")
+                    {
+                        IsRequired = true
+                    },
+                    new Option<string?>("--path", "The path with which the credential will be used. E.g., for accessing a remote https repository, this will be the repository's path on the server."),
+                }
+                .WithHandler<Program>(nameof(GetAsync)),
+                new Command("store", "Store a credential.")
                 {
-                    IsRequired = true
-                },
-                new Option<string>(new string[] { "--username", "-usr" }, "The credential's username.")
+                    new Argument<string?>("url",
+                        new ParseArgument<string>(result => {
+                            //var r = result.FindResultFor(result. "url");
+                            return "";
+                        }),
+                    description: "A URL used to populate options from a single value: [protocol]://[user]:[password]@[host]/[path?]")
+                    {
+                        Arity = ArgumentArity.ZeroOrOne,
+                    },
+                    new Option<string>(new string[] { "--protocol", "-s" },
+                        description: "The protocol over which the credential will be used (e.g., https).")
+                    {
+                        IsRequired = true,
+                    },
+                    new Option<string>(new string[] { "--host", "-h" }, "The remote hostname for a network credential. This can include the port number.")
+                    {
+                        IsRequired = true
+                    },
+                    new Option<string>(new string[] { "--username", "-u" }, "The credential's username.")
+                    {
+                        IsRequired = true
+                    },
+                    new Option<string>(new string[] { "--password", "-p" }, "The credential's password.")
+                    {
+                        IsRequired = true
+                    },
+                    new Option<string?>("--path", "The path with which the credential will be used. E.g., for accessing a remote https repository, this will be the repository's path on the server."),
+                }
+                .WithHandler<Program>(nameof(StoreAsync)),
+                new Command("erase", "Erase a stored credential.")
                 {
-                    IsRequired = true
-                },
-                new Option<string>(new string[] { "--password", "-pwd" }, "The credential's password.")
-                {
-                    IsRequired = true
-                },
-                new Option<string?>("--path", "The path with which the credential will be used. E.g., for accessing a remote https repository, this will be the repository's path on the server."),
+                    new Argument<string?>("url", "A URL used to populate options from a single value: [protocol]://[host]/[path?]")
+                    {
+                        Arity = ArgumentArity.ZeroOrOne
+                    },
+                    new Option<string>(new string[] { "--protocol", "-p" }, "The protocol over which the credential will be used (e.g., https).")
+                    {
+                        IsRequired = true
+                    },
+                    new Option<string>(new string[] { "--host", "-h" }, "The remote hostname for a network credential. This can include the port number.")
+                    {
+                        IsRequired = true
+                    },
+                    new Option<string?>("--path", "The path with which the credential will be used. E.g., for accessing a remote https repository, this will be the repository's path on the server."),
+                }
+                .WithHandler<Program>(nameof(EraseAsync))
             };
-            store.Handler = CommandHandler.Create<string, string, string, string, string>(StoreAsync);
 
-            var erase = new Command("erase", "Erase a stored credential.")
-            {
-                new Option<string>(new string[] { "--protocol", "-p" }, "The protocol over which the credential will be used (e.g., https).")
+            await new CommandLineBuilder(root)
+                .UseMiddleware(async (context, next) =>
                 {
-                    IsRequired = true
-                },
-                new Option<string>(new string[] { "--host", "-h" }, "The remote hostname for a network credential. This can include the port number.")
-                {
-                    IsRequired = true
-                },
-                new Option<string?>("--path", "The path with which the credential will be used. E.g., for accessing a remote https repository, this will be the repository's path on the server."),
-            };
-            erase.Handler = CommandHandler.Create<string, string, string?>(EraseAsync);
+                    var arg = context.ParseResult.CommandResult.Children.GetByAlias("url");
+                    if (arg != null)
+                    {
+                        if (!Uri.TryCreate(arg.Tokens[0].Value, UriKind.Absolute, out var uri))
+                            throw new ArgumentException($"Invalid URI {arg.Tokens[0].Value}");
+                        else
+                        {
+                            var newArgs = new List<string>(args)
+                            {
+                                "--protocol",
+                                uri.Scheme,
+                                "--host", 
+                                uri.Host,
+                            };
+                            if (uri.TryGetUserInfo(out var user, out var password))
+                            {
+                                newArgs.Add("--username");
+                                newArgs.Add(user);
+                                newArgs.Add("--password");
+                                newArgs.Add(password);
+                            }
+                            var path = uri.GetComponents(UriComponents.Path, UriFormat.Unescaped);
+                            if (!string.IsNullOrEmpty(path))
+                            {
+                                newArgs.Add("--path");
+                                newArgs.Add(path);
+                            }
 
-            var get = new Command("get", "Get a stored credential.")
-            {
-                new Option<string>(new string[] { "--protocol", "-p" }, "The protocol over which the credential will be used (e.g., https).")
-                {
-                    IsRequired = true
-                },
-                new Option<string>(new string[] { "--host", "-h" }, "The remote hostname for a network credential. This can include the port number.")
-                {
-                    IsRequired = true
-                },
-                new Option<string?>("--path", "The path with which the credential will be used. E.g., for accessing a remote https repository, this will be the repository's path on the server."),
-            };
-            get.Handler = CommandHandler.Create<string, string, string?>(GetAsync);
-
-            await new RootCommand
-            {
-                erase,
-                get,
-                store
-            }.InvokeAsync(args);
+                            context.ParseResult = context.Parser.Parse(newArgs);
+                            await next(context);
+                            return;
+                        }
+                    }
+                    await next(context);
+                })
+                .UseDefaults()
+                .Build()
+                .InvokeAsync(args);
         }
 
         static async Task EraseAsync(string protocol, string host, string? path)
