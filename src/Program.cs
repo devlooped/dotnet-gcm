@@ -78,7 +78,7 @@ namespace gcm
                     new Option<string?>("--path", "The path with which the credential will be used. E.g., for accessing a remote https repository, this will be the repository's path on the server."),
                 }
                 .WithHandler<Program>(nameof(GetAsync)),
-                new Command("store", "Store a credential.")
+                new Command("set", "Stores a credential through the Git Credentials Manager.")
                 {
                     new Argument<string?>("url",
                         new ParseArgument<string>(result => {
@@ -109,7 +109,7 @@ namespace gcm
                     new Option<string?>("--path", "The path with which the credential will be used. E.g., for accessing a remote https repository, this will be the repository's path on the server."),
                 }
                 .WithHandler<Program>(nameof(StoreAsync)),
-                new Command("erase", "Erase a stored credential.")
+                new Command("delete", "Erases a stored credential from the Git Credentials Manager.")
                 {
                     new Argument<string?>("url", "A URL used to populate options from a single value: [protocol]://[host]/[path?]")
                     {
@@ -128,8 +128,14 @@ namespace gcm
                 .WithHandler<Program>(nameof(EraseAsync))
             };
 
+            // For backwards compatibility, replace old command names.
+            if (args.Length > 0 && args[0] == "erase")
+                args[0] = "delete";
+            if (args.Length > 0 && args[0] == "store")
+                args[0] = "set";
+
             await new CommandLineBuilder(root)
-                .UseMiddleware(async (context, next) =>
+               .UseMiddleware(async (context, next) =>
                 {
                     var arg = context.ParseResult.CommandResult.Children.GetByAlias("url");
                     if (arg != null)
