@@ -17,48 +17,66 @@ Options:
   -?, -h, --help    Show help and usage information
 
 Commands:
-  erase    Erase a stored credential.
-  get      Get a stored credential.
-  store    Store a credential.
+  get <url>     Get a stored credential.
+  set <url>     Store a credential.
+  delete <url>  Delete a stored credential.
 ```
 
-**erase**: Erase a stored credential.
+Note that all commands can operate on a simplified syntax using a full URI, which can include `username:password` 
+(as in the `set` command). That argument is converted to a `Uri` and the existing options are used as the default 
+value for required options that aren't provided. You can alternatively provide the individual options.
 
-```
-Usage:
-  gcm erase [options]
-
-Options:
-  -p, --protocol <protocol> (REQUIRED)    The protocol over which the credential will be used (e.g., https).
-  -h, --host <host> (REQUIRED)            The remote hostname for a network credential. This can include the port number.
-  --path <path>                           The path with which the credential will be used. E.g., for accessing a remote https repository, this will be the repository's path on the
-                                          server.
-```
 
 **get**: Get a stored credential.
 
 ```
 Usage:
-  gcm get [options]
+  gcm [options] get [<url>]
+
+Arguments:
+  <url>  A URL used to populate options from a single value: [protocol]://[host]/[path?]
 
 Options:
-  -p, --protocol <protocol> (REQUIRED)    The protocol over which the credential will be used (e.g., https).
-  -h, --host <host> (REQUIRED)            The remote hostname for a network credential. This can include the port number.
-  --path <path>                           The path with which the credential will be used. E.g., for accessing a remote https repository, this will be the repository's path on the
-                                          server.
+  -p, --protocol <protocol> (REQUIRED)  The protocol over which the credential will be used (e.g., https).
+  -h, --host <host> (REQUIRED)          The remote hostname for a network credential. This can include the port number.
+  --path <path>                         The path with which the credential will be used. E.g., for accessing a remote
+                                        https repository, this will be the repository's path on the server.
+  -?, -h, --help                        Show help and usage information
 ```
 
-**store**: Store a credential.
+**set**: Store a credential.
 
 ```
 Usage:
-  gcm store [options]
+  gcm [options] set [<url>]
+
+Arguments:
+  <url>  A URL used to populate options from a single value: [protocol]://[user]:[password]@[host]/[path?]
 
 Options:
-  -p, --protocol <protocol> (REQUIRED)      The protocol over which the credential will be used (e.g., https).
-  -h, --host <host> (REQUIRED)              The remote hostname for a network credential. This can include the port number.
-  -usr, --username <username> (REQUIRED)    The credential's username.
-  -pwd, --password <password> (REQUIRED)    The credential's password.
-  --path <path>                             The path with which the credential will be used. E.g., for accessing a remote https repository, this will be the repository's path on the
-                                            server.
+  -s, --protocol <protocol> (REQUIRED)  The protocol over which the credential will be used (e.g., https).
+  -h, --host <host> (REQUIRED)          The remote hostname for a network credential. This can include the port number.
+  -u, --username <username> (REQUIRED)  The credential's username.
+  -p, --password <password> (REQUIRED)  The credential's password.
+  --path <path>                         The path with which the credential will be used. E.g., for accessing a remote https repository, this
+                                        will be the repository's path on the server.
+  -?, -h, --help                        Show help and usage information
 ```
+
+**delete**: Delete a stored credential.
+
+```
+Usage:
+  gcm [options] delete [<url>]
+
+Arguments:
+  <url>  A URL used to populate options from a single value: [protocol]://[host]/[path?]
+
+Options:
+  -p, --protocol <protocol> (REQUIRED)  The protocol over which the credential will be used (e.g., https).
+  -h, --host <host> (REQUIRED)          The remote hostname for a network credential. This can include the port number.
+  --path <path>                         The path with which the credential will be used. E.g., for accessing a remote https repository, this
+                                        will be the repository's path on the server.
+  -?, -h, --help                        Show help and usage information
+```
+
