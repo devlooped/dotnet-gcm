@@ -40,7 +40,7 @@ Commands:
     <PackAsTool>true</PackAsTool>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageIcon>gcm.png</PackageIcon>
+    <PackageIcon>icon.png</PackageIcon>
     <PackageTags>git credentials dotnet</PackageTags>
 
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
@@ -56,7 +56,7 @@ Commands:
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="..\gcm.png" Link="gcm.png" PackagePath="gcm.png" />
+    <None Update="nuget.png" Pack="true" PackagePath="icon.png" />
   </ItemGroup>
 
   <ItemGroup>
