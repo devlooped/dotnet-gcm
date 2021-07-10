@@ -1,8 +1,8 @@
 
 
-## [v0.3.1](https://github.com/devlooped/dotnet-gcm/tree/v0.3.1) (2021-07-10)
+## [v0.3.2](https://github.com/devlooped/dotnet-gcm/tree/v0.3.2) (2021-07-10)
 
-[Full Changelog](https://github.com/devlooped/dotnet-gcm/compare/v0.3.0...v0.3.1)
+[Full Changelog](https://github.com/devlooped/dotnet-gcm/compare/v0.3.0...v0.3.2)
 
 :sparkles: Implemented enhancements:
 
