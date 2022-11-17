@@ -19,7 +19,7 @@
 
   <ItemGroup>
     <Content Include="nuget.png" PackagePath="icon.png" Pack="true" />
-    <None Include="..\readme.md" PackagePath="readme.md" Pack="true" />
+    <None Update="readme.md" PackagePath="readme.md" Pack="true" />
   </ItemGroup>
 
   <ItemGroup>
