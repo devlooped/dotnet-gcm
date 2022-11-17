@@ -5,12 +5,13 @@ name: build
 on: 
   workflow_dispatch:
   push:
-    branches: [ main, dev, 'feature/*', 'rel/*' ]
+    branches: [ main, dev, 'dev/*', 'feature/*', 'rel/*' ]
     paths-ignore:
       - changelog.md
       - code-of-conduct.md
       - security.md
       - support.md
+      - readme.md
   pull_request:
     types: [opened, synchronize, reopened]
 
@@ -22,28 +23,29 @@ defaults:
     shell: bash
 
 jobs:
-  dotnet-format:
+  os-matrix:
     runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.lookup.outputs.matrix }}
     steps:
       - name: 🤘 checkout
         uses: actions/checkout@v2
-        with: 
-          submodules: recursive
-          fetch-depth: 0
-
-      - name: ✓ ensure format
+        
+      - name: 🔎 lookup
+        id: lookup
+        shell: pwsh
         run: |
-          dotnet tool update -g dotnet-format --version 5.0.*
-          dotnet restore
-          dotnet format --check -v:diag
+          $path = './.github/workflows/os-matrix.json'
+          $os = if (test-path $path) { cat $path } else { '["ubuntu-latest"]' }
+          echo "matrix=$os" >> $env:GITHUB_OUTPUT
 
   build:
+    needs: os-matrix
     name: build-${{ matrix.os }}
-    needs: dotnet-format
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest, macOS-latest]
+        os: ${{ fromJSON(needs.os-matrix.outputs.matrix) }}
     steps:
       - name: 🤘 checkout
         uses: actions/checkout@v2
@@ -54,8 +56,14 @@ jobs:
       - name: 🙏 build
         run: dotnet build -m:1 -p:VersionLabel="$GITHUB_REF.$GITHUB_RUN_NUMBER"
 
+      - name: ⚙ GNU grep
+        if: matrix.os == 'macOS-latest'
+        run: |
+          brew install grep
+          echo 'export PATH="/usr/local/opt/grep/libexec/gnubin:$PATH"' >> .bash_profile
+
       - name: 🧪 test
-        run: dotnet test --no-build -m:1 --blame-hang --blame-hang-timeout 5m
+        uses: ./.github/workflows/test
 
       - name: 📦 pack
         run: dotnet pack -m:1 -p:VersionLabel="$GITHUB_REF.$GITHUB_RUN_NUMBER"
@@ -68,3 +76,16 @@ jobs:
         run: |
           dotnet tool install -g --version 4.0.18 sleet 
           sleet push bin --config none -f --verbose -p "SLEET_FEED_CONTAINER=nuget" -p "SLEET_FEED_CONNECTIONSTRING=${{ secrets.SLEET_CONNECTION }}" -p "SLEET_FEED_TYPE=azure" || echo "No packages found"
+
+  dotnet-format:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: 🤘 checkout
+        uses: actions/checkout@v2
+        with: 
+          submodules: recursive
+          fetch-depth: 0
+
+      - name: ✓ ensure format
+        run: dotnet format --verify-no-changes -v:diag --exclude ~/.nuget
