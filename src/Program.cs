@@ -9,9 +9,9 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using Atlassian.Bitbucket;
+using GitCredentialManager;
 using GitHub;
 using Microsoft.AzureRepos;
-using Microsoft.Git.CredentialManager;
 
 namespace gcm
 {
@@ -25,7 +25,8 @@ namespace gcm
             Environment.SetEnvironmentVariable("GCM_INTERACTIVE", "never", EnvironmentVariableTarget.Process);
             Environment.SetEnvironmentVariable("GIT_TERMINAL_PROMPT", "false", EnvironmentVariableTarget.Process);
 
-            var context = new CommandContext(GetApplicationPath());
+            var appPath = ApplicationBase.GetEntryApplicationPath();
+            var context = new CommandContext(appPath);
             providers = new IHostProvider[]
             {
                 new GitHubHostProvider(context),
