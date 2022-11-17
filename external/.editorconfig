@@ -1,0 +1,3 @@
+# ignore submodule
+[**]
+generated_code = true
