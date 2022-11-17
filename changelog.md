@@ -1,5 +1,9 @@
 # Changelog
 
+## [v0.4.1](https://github.com/devlooped/dotnet-gcm/tree/v0.4.1) (2022-11-17)
+
+[Full Changelog](https://github.com/devlooped/dotnet-gcm/compare/v0.4.0...v0.4.1)
+
 ## [v0.4.0](https://github.com/devlooped/dotnet-gcm/tree/v0.4.0) (2022-11-17)
 
 [Full Changelog](https://github.com/devlooped/dotnet-gcm/compare/v0.3.2...v0.4.0)
