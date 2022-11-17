@@ -1,4 +1,13 @@
+# Changelog
 
+## [v0.4.0](https://github.com/devlooped/dotnet-gcm/tree/v0.4.0) (2022-11-17)
+
+[Full Changelog](https://github.com/devlooped/dotnet-gcm/compare/v0.3.2...v0.4.0)
+
+:twisted_rightwards_arrows: Merged:
+
+- Bump with dotnet file sync, clean artifacts [\#12](https://github.com/devlooped/dotnet-gcm/pull/12) (@kzu)
+- Bump GCM to latest stable v2.0.785 [\#11](https://github.com/devlooped/dotnet-gcm/pull/11) (@kzu)
 
 ## [v0.3.2](https://github.com/devlooped/dotnet-gcm/tree/v0.3.2) (2021-07-10)
 
