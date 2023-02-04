@@ -1,5 +1,17 @@
 # Changelog
 
+## [v2.0.886](https://github.com/devlooped/dotnet-gcm/tree/v2.0.886) (2023-02-04)
+
+[Full Changelog](https://github.com/devlooped/dotnet-gcm/compare/v0.5.0-beta...v2.0.886)
+
+## [v0.5.0-beta](https://github.com/devlooped/dotnet-gcm/tree/v0.5.0-beta) (2023-02-04)
+
+[Full Changelog](https://github.com/devlooped/dotnet-gcm/compare/v0.4.2...v0.5.0-beta)
+
+:sparkles: Implemented enhancements:
+
+- Bump to latest GCM release v2.0.886 and .NET6 RTM [\#18](https://github.com/devlooped/dotnet-gcm/pull/18) (@kzu)
+
 ## [v0.4.2](https://github.com/devlooped/dotnet-gcm/tree/v0.4.2) (2022-11-17)
 
 [Full Changelog](https://github.com/devlooped/dotnet-gcm/compare/v0.4.1...v0.4.2)
