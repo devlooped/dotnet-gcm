@@ -4,7 +4,7 @@
     <Description>A dotnet global tool for managing Git credentials using the Microsoft Git Credentials Manager Core.</Description>
 
     <OutputType>Exe</OutputType>
-    <TargetFrameworks>netcoreapp3.1;net6.0</TargetFrameworks>
+    <TargetFramework>net6.0</TargetFramework>
 
     <AssemblyName>gcm</AssemblyName>
     <RootNamespace>DotNet</RootNamespace>
