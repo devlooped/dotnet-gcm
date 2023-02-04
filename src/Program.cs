@@ -26,7 +26,7 @@ namespace gcm
             Environment.SetEnvironmentVariable("GIT_TERMINAL_PROMPT", "false", EnvironmentVariableTarget.Process);
 
             var appPath = ApplicationBase.GetEntryApplicationPath();
-            var context = new CommandContext(appPath);
+            var context = new CommandContext(appPath, AppContext.BaseDirectory);
             providers = new IHostProvider[]
             {
                 new GitHubHostProvider(context),
