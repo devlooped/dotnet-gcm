@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <Description>A dotnet global tool for managing Git credentials using the Microsoft Git Credentials Manager Core.</Description>
@@ -24,7 +24,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="all" />
-    <PackageReference Include="System.CommandLine" Version="2.0.0-beta1.21216.1" />
+    <PackageReference Include="System.CommandLine" Version="2.0.0-beta3.22111.2" />
   </ItemGroup>
 
   <ItemGroup>
