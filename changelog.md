@@ -1,23 +1,20 @@
 # Changelog
 
+## [v2.4.2](https://github.com/devlooped/dotnet-gcm/tree/v2.4.2) (2024-05-01)
+
+[Full Changelog](https://github.com/devlooped/dotnet-gcm/compare/v2.4.1...v2.4.2)
+
+:bug: Fixed bugs:
+
+- Add backwards compatibility renaming for --protocol [\#26](https://github.com/devlooped/dotnet-gcm/pull/26) (@kzu)
+
 ## [v2.4.1](https://github.com/devlooped/dotnet-gcm/tree/v2.4.1) (2024-05-01)
 
-[Full Changelog](https://github.com/devlooped/dotnet-gcm/compare/v2.4.1-beta...v2.4.1)
-
-## [v2.4.1-beta](https://github.com/devlooped/dotnet-gcm/tree/v2.4.1-beta) (2024-05-01)
-
-[Full Changelog](https://github.com/devlooped/dotnet-gcm/compare/v2.4.1-alpha...v2.4.1-beta)
+[Full Changelog](https://github.com/devlooped/dotnet-gcm/compare/v2.0.886...v2.4.1)
 
 :sparkles: Implemented enhancements:
 
 - Replace System.CommandLine with Spectre.Console.Cli [\#23](https://github.com/devlooped/dotnet-gcm/issues/23)
-
-## [v2.4.1-alpha](https://github.com/devlooped/dotnet-gcm/tree/v2.4.1-alpha) (2024-05-01)
-
-[Full Changelog](https://github.com/devlooped/dotnet-gcm/compare/v2.0.886...v2.4.1-alpha)
-
-:sparkles: Implemented enhancements:
-
 - Modernize by switching to Spectre.Console.Cli [\#24](https://github.com/devlooped/dotnet-gcm/pull/24) (@kzu)
 
 ## [v2.0.886](https://github.com/devlooped/dotnet-gcm/tree/v2.0.886) (2023-02-04)
