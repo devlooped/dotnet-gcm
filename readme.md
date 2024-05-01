@@ -7,17 +7,16 @@
 A dotnet global tool for managing Git credentials using the Microsoft Git Credentials Manager Core.
 
 ```
-Usage:
-  gcm [options] [command]
+USAGE:
+    dotnet gcm [OPTIONS] <COMMAND>
 
-Options:
-  --version         Show version information
-  -?, -h, --help    Show help and usage information
+OPTIONS:
+    -h, --help    Prints help information
 
-Commands:
-  get <url>     Get a stored credential.
-  set <url>     Store a credential.
-  delete <url>  Delete a stored credential.
+COMMANDS:
+    get       Get a stored credential
+    delete    Delete a stored credential
+    set       Store a credential
 ```
 
 Note that all commands can operate on a simplified syntax using a full URI, which can include `username:password` 
@@ -25,59 +24,69 @@ Note that all commands can operate on a simplified syntax using a full URI, whic
 value for required options that aren't provided. You can alternatively provide the individual options.
 
 
-**get**: Get a stored credential.
+### dotnet gcm get
 
 ```
-Usage:
-  gcm [options] get [<url>]
+DESCRIPTION:
+Get a stored credential.
 
-Arguments:
-  <url>  A URL used to populate options from a single value: [protocol]://[host]/[path?]
+USAGE:
+    dotnet gcm get [URL] [OPTIONS]
 
-Options:
-  -p, --protocol <protocol> (REQUIRED)  The protocol over which the credential will be used (e.g., https).
-  -h, --host <host> (REQUIRED)          The remote hostname for a network credential. This can include the port number.
-  --path <path>                         The path with which the credential will be used. E.g., for accessing a remote
-                                        https repository, this will be the repository's path on the server.
-  -?, -h, --help                        Show help and usage information
+ARGUMENTS:
+    [URL]    A URL used to populate options from a single value: [protocol]://[user]:[password]@[host]/[path?]
+
+OPTIONS:
+    -h, --help               Prints help information
+    -s, --scheme <SCHEME>    The protocol over which the credential will be used (e.g., https)
+    -h, --host <HOST>        The remote hostname for a network credential. This can include the port number
+        --path <PATH>        The path with which the credential will be used. E.g., for accessing a remote https repository, this will be the repository's
+                             path on the server
 ```
 
-**set**: Store a credential.
+### dotnet gcm set
 
 ```
-Usage:
-  gcm [options] set [<url>]
+DESCRIPTION:
+Store a credential.
 
-Arguments:
-  <url>  A URL used to populate options from a single value: [protocol]://[user]:[password]@[host]/[path?]
+USAGE:
+    dotnet gcm set [URL] [OPTIONS]
 
-Options:
-  -s, --protocol <protocol> (REQUIRED)  The protocol over which the credential will be used (e.g., https).
-  -h, --host <host> (REQUIRED)          The remote hostname for a network credential. This can include the port number.
-  -u, --username <username> (REQUIRED)  The credential's username.
-  -p, --password <password> (REQUIRED)  The credential's password.
-  --path <path>                         The path with which the credential will be used. E.g., for accessing a remote https repository, this
-                                        will be the repository's path on the server.
-  -?, -h, --help                        Show help and usage information
+ARGUMENTS:
+    [URL]    A URL used to populate options from a single value: [protocol]://[user]:[password]@[host]/[path?]
+
+OPTIONS:
+    -h, --help                   Prints help information
+    -s, --scheme <SCHEME>        The protocol over which the credential will be used (e.g., https)
+    -h, --host <HOST>            The remote hostname for a network credential. This can include the port number
+        --path <PATH>            The path with which the credential will be used. E.g., for accessing a remote https repository, this will be the
+                                 repository's path on the server
+    -u, --username <USERNAME>    The credential's username
+    -p, --password <PASSWORD>    The credential's password
 ```
 
-**delete**: Delete a stored credential.
+### dotnet gcm delete
 
 ```
-Usage:
-  gcm [options] delete [<url>]
+DESCRIPTION:
+Delete a stored credential.
 
-Arguments:
-  <url>  A URL used to populate options from a single value: [protocol]://[host]/[path?]
+USAGE:
+    dotnet gcm delete [URL] [OPTIONS]
 
-Options:
-  -p, --protocol <protocol> (REQUIRED)  The protocol over which the credential will be used (e.g., https).
-  -h, --host <host> (REQUIRED)          The remote hostname for a network credential. This can include the port number.
-  --path <path>                         The path with which the credential will be used. E.g., for accessing a remote https repository, this
-                                        will be the repository's path on the server.
-  -?, -h, --help                        Show help and usage information
+ARGUMENTS:
+    [URL]    A URL used to populate options from a single value: [protocol]://[user]:[password]@[host]/[path?]
+
+OPTIONS:
+    -h, --help               Prints help information
+    -s, --scheme <SCHEME>    The protocol over which the credential will be used (e.g., https)
+    -h, --host <HOST>        The remote hostname for a network credential. This can include the port number
+        --path <PATH>        The path with which the credential will be used. E.g., for accessing a remote https repository, this will be the repository's
+                             path on the server
 ```
 
+<!-- #content -->
 <!-- include https://github.com/devlooped/sponsors/raw/main/footer.md -->
 # Sponsors 
 

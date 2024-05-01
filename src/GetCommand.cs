@@ -1,10 +1,12 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Threading.Tasks;
 using Spectre.Console;
 using Spectre.Console.Cli;
 
 namespace Devlooped;
 
+[Description("Get a stored credential.")]
 public class GetCommand : AsyncCommand<UrlSettings>
 {
     public override async Task<int> ExecuteAsync(CommandContext context, UrlSettings settings)

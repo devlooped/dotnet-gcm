@@ -1,8 +1,10 @@
-﻿using System.Threading.Tasks;
+﻿using System.ComponentModel;
+using System.Threading.Tasks;
 using Spectre.Console.Cli;
 
 namespace Devlooped;
 
+[Description("Delete a stored credential.")]
 public class DeleteCommand : AsyncCommand<UrlSettings>
 {
     public override async Task<int> ExecuteAsync(CommandContext context, UrlSettings settings)

@@ -14,6 +14,10 @@ app.Configure(config =>
 
     config.Settings.HelpProviderStyles = new Spectre.Console.Cli.Help.HelpProviderStyle
     {
+        Description = new Spectre.Console.Cli.Help.DescriptionStyle
+        {
+            Header = new Spectre.Console.Style(Spectre.Console.Color.Yellow, decoration: Spectre.Console.Decoration.Bold), 
+        },
         Usage = new Spectre.Console.Cli.Help.UsageStyle
         {
             Header = new Spectre.Console.Style(Spectre.Console.Color.Yellow, decoration: Spectre.Console.Decoration.Bold),
