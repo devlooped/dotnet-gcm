@@ -4,7 +4,8 @@
 [![Version](https://img.shields.io/nuget/v/dotnet-gcm.svg?color=royalblue)](https://www.nuget.org/packages/dotnet-gcm) [![Downloads](https://img.shields.io/nuget/dt/dotnet-gcm.svg?color=green)](https://www.nuget.org/packages/dotnet-gcm) [![License](https://img.shields.io/github/license/devlooped/dotnet-gcm.svg?color=blue)](https://github.com//devlooped/dotnet-gcm/blob/main/license.txt) [![Build](https://github.com/devlooped/dotnet-gcm/workflows/build/badge.svg?branch=main)](https://github.com/devlooped/dotnet-gcm/actions)
 
 <!-- #content -->
-A dotnet global tool for managing Git credentials using the Microsoft Git Credentials Manager Core.
+A dotnet global tool for managing Git credentials using the cross-platform Git Credential Manager (GCM) 
+for Windows, macOS and Linux, with support for Azure DevOps, Bitbucket, GitHub, and GitLab.
 
 ```
 USAGE:
