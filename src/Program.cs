@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Devlooped;
 using Spectre.Console.Cli;
 
@@ -16,7 +18,7 @@ app.Configure(config =>
     {
         Description = new Spectre.Console.Cli.Help.DescriptionStyle
         {
-            Header = new Spectre.Console.Style(Spectre.Console.Color.Yellow, decoration: Spectre.Console.Decoration.Bold), 
+            Header = new Spectre.Console.Style(Spectre.Console.Color.Yellow, decoration: Spectre.Console.Decoration.Bold),
         },
         Usage = new Spectre.Console.Cli.Help.UsageStyle
         {
@@ -57,4 +59,5 @@ if (args.Length > 0 && args[0] == "erase")
 if (args.Length > 0 && args[0] == "store")
     args[0] = "set";
 
-await app.RunAsync(args);
+// Replace --protocol > --scheme
+await app.RunAsync(args.Select(x => x.StartsWith("--protocol", StringComparison.OrdinalIgnoreCase) ? x.Replace("--protocol", "--scheme") : x));
