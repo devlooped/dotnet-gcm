@@ -1,5 +1,13 @@
 # Changelog
 
+## [v2.4.1-alpha](https://github.com/devlooped/dotnet-gcm/tree/v2.4.1-alpha) (2024-05-01)
+
+[Full Changelog](https://github.com/devlooped/dotnet-gcm/compare/v2.0.886...v2.4.1-alpha)
+
+:sparkles: Implemented enhancements:
+
+- Modernize by switching to Spectre.Console.Cli [\#24](https://github.com/devlooped/dotnet-gcm/pull/24) (@kzu)
+
 ## [v2.0.886](https://github.com/devlooped/dotnet-gcm/tree/v2.0.886) (2023-02-04)
 
 [Full Changelog](https://github.com/devlooped/dotnet-gcm/compare/v0.5.0-beta...v2.0.886)
