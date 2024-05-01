@@ -1,5 +1,13 @@
 # Changelog
 
+## [v2.4.1-beta](https://github.com/devlooped/dotnet-gcm/tree/v2.4.1-beta) (2024-05-01)
+
+[Full Changelog](https://github.com/devlooped/dotnet-gcm/compare/v2.4.1-alpha...v2.4.1-beta)
+
+:sparkles: Implemented enhancements:
+
+- Replace System.CommandLine with Spectre.Console.Cli [\#23](https://github.com/devlooped/dotnet-gcm/issues/23)
+
 ## [v2.4.1-alpha](https://github.com/devlooped/dotnet-gcm/tree/v2.4.1-alpha) (2024-05-01)
 
 [Full Changelog](https://github.com/devlooped/dotnet-gcm/compare/v2.0.886...v2.4.1-alpha)
