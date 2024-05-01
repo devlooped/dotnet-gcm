@@ -4,34 +4,35 @@
     <Description>A dotnet global tool for managing Git credentials using the Microsoft Git Credentials Manager Core.</Description>
 
     <OutputType>Exe</OutputType>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
 
     <AssemblyName>gcm</AssemblyName>
-    <RootNamespace>DotNet</RootNamespace>
+    <RootNamespace>Devlooped</RootNamespace>
     <PackageId>dotnet-gcm</PackageId>
     <ToolCommandName>dotnet-gcm</ToolCommandName>
     <PackAsTool>true</PackAsTool>
     <PackageTags>git credentials dotnet</PackageTags>
     <NoWarn>NU5118</NoWarn>
-    <PackageReadmeFile>readme.md</PackageReadmeFile>
-    <PackageIcon>icon.png</PackageIcon>
+
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="nuget.png" PackagePath="icon.png" Pack="true" />
-    <None Update="readme.md" PackagePath="readme.md" Pack="true" />
+    <None Remove="Directory.Build.*" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="all" />
-    <PackageReference Include="System.CommandLine" Version="2.0.0-beta1.21216.1" />
+    <PackageReference Include="Spectre.Console.Analyzer" Version="0.49.1" PrivateAssets="all"  />
+    <PackageReference Include="Spectre.Console.Cli" Version="0.49.1" />
+    <PackageReference Include="git-credential-manager" Version="2.4.1" IncludeAssets="tools" GeneratePathProperty="true" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\external\gcm\src\shared\Atlassian.Bitbucket\Atlassian.Bitbucket.csproj" />
-    <ProjectReference Include="..\external\gcm\src\shared\GitHub\GitHub.csproj" />
-    <ProjectReference Include="..\external\gcm\src\shared\Microsoft.AzureRepos\Microsoft.AzureRepos.csproj" />
-    <ProjectReference Include="..\external\gcm\src\shared\Core\Core.csproj" />
+  <ItemGroup Condition="'$(Pkggit-credential-manager)' != ''">
+    <Reference Include="Atlassian.Bitbucket" HintPath="$(Pkggit-credential-manager)\tools\net7.0\any\Atlassian.Bitbucket.dll" />
+    <Reference Include="Microsoft.AzureRepos" HintPath="$(Pkggit-credential-manager)\tools\net7.0\any\Microsoft.AzureRepos.dll" />
+    <Reference Include="GitHub" HintPath="$(Pkggit-credential-manager)\tools\net7.0\any\GitHub.dll" />
+    <Reference Include="GitLab" HintPath="$(Pkggit-credential-manager)\tools\net7.0\any\GitLab.dll" />
+    <Reference Include="gcmcore" HintPath="$(Pkggit-credential-manager)\tools\net7.0\any\gcmcore.dll" />
   </ItemGroup>
 
 </Project>
