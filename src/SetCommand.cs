@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿extern alias CredentialManager;
+using System.ComponentModel;
 using System.Threading.Tasks;
 using Spectre.Console.Cli;
 
@@ -9,14 +10,22 @@ public class SetCommand : AsyncCommand<CredentialUrlSettings>
 {
     public override async Task<int> ExecuteAsync(CommandContext context, CredentialUrlSettings settings)
     {
-        var input = settings.ToInputs();
-
-        if (HostProviders.GetProvider(input) is { } provider)
+        if (settings.Namespace == null)
         {
-            await provider.StoreCredentialAsync(input);
-            return 0;
+            var input = settings.ToInputs();
+
+            if (HostProviders.GetProvider(input) is { } provider)
+            {
+                await provider.StoreCredentialAsync(input);
+                return 0;
+            }
+
+            return -1;
         }
 
-        return -1;
+        var store = CredentialManager.GitCredentialManager.CredentialManager.Create(settings.Namespace);
+        // settings validation ensures we always have a URI
+        store.AddOrUpdate(settings.Uri!.AbsoluteUri, settings.Username, settings.Password);
+        return 0;
     }
 }

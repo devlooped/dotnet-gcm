@@ -58,6 +58,10 @@ public class UrlSettings : CommandSettings
     [CommandOption("--path <PATH>")]
     public string? Path { get; set; }
 
+    [Description("Optional namespace for generic credentials that don't belong to a particular host provider.")]
+    [CommandOption("-n|--namespace", IsHidden = true)]
+    public string? Namespace { get; set; }
+
     public override ValidationResult Validate()
     {
         if (Uri != null)
@@ -65,6 +69,18 @@ public class UrlSettings : CommandSettings
             Scheme = Uri.Scheme;
             Host = Uri.Host;
             Path = Uri.GetComponents(UriComponents.Path, UriFormat.Unescaped);
+        }
+
+        if (Host == null || Scheme == null)
+            return ValidationResult.Error("Either a URL or host and scheme are required.");
+
+        if (Uri == null)
+        {
+            var builder = new UriBuilder(Scheme, Host);
+            if (Path != null)
+                builder.Path = Path;
+
+            Uri = builder.Uri;
         }
 
         return base.Validate();
