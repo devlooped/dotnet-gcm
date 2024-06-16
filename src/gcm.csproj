@@ -13,7 +13,7 @@
     <PackAsTool>true</PackAsTool>
     <PackageTags>git credentials dotnet</PackageTags>
     <NoWarn>NU5118</NoWarn>
-
+    <DefaultExcludesInProjectFolder>SponsorLink/**/*.*</DefaultExcludesInProjectFolder>
     <GenerateDocumentationFile>false</GenerateDocumentationFile>
 
     <BuildDate>$([System.DateTime]::Now.ToString("yyyy-MM-dd"))</BuildDate>
