@@ -1,5 +1,18 @@
 # Changelog
 
+## [v2.4.3](https://github.com/devlooped/dotnet-gcm/tree/v2.4.3) (2024-06-16)
+
+[Full Changelog](https://github.com/devlooped/dotnet-gcm/compare/v2.4.2...v2.4.3)
+
+:sparkles: Implemented enhancements:
+
+- Allow usage with a custom namespace for generic credential scoping [\#31](https://github.com/devlooped/dotnet-gcm/issues/31)
+- Allow usage with a namespace for generic credential scoping [\#32](https://github.com/devlooped/dotnet-gcm/pull/32) (@kzu)
+
+:bug: Fixed bugs:
+
+- Add backwards compatibility for breaking change from --protocol to --scheme [\#25](https://github.com/devlooped/dotnet-gcm/issues/25)
+
 ## [v2.4.2](https://github.com/devlooped/dotnet-gcm/tree/v2.4.2) (2024-05-01)
 
 [Full Changelog](https://github.com/devlooped/dotnet-gcm/compare/v2.4.1...v2.4.2)
