@@ -1,5 +1,6 @@
 ﻿extern alias CredentialManager;
 using System.ComponentModel;
+using System.Threading;
 using System.Threading.Tasks;
 using Spectre.Console.Cli;
 
@@ -8,7 +9,7 @@ namespace Devlooped;
 [Description("Store a credential.")]
 public class SetCommand : AsyncCommand<CredentialUrlSettings>
 {
-    public override async Task<int> ExecuteAsync(CommandContext context, CredentialUrlSettings settings)
+    public override async Task<int> ExecuteAsync(CommandContext context, CredentialUrlSettings settings, CancellationToken cancellationToken)
     {
         if (settings.Namespace == null)
         {

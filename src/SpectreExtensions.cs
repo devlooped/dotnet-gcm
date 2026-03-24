@@ -31,7 +31,7 @@ static class SpectreExtensions
             Options = new Spectre.Console.Cli.Help.OptionStyle
             {
                 Header = new Style(Color.Yellow, decoration: Decoration.Bold),
-                OptionalOption = new Style(Color.Grey),
+                OptionalOptionValue = new Style(Color.Grey),
                 RequiredOption = new Style(Color.Blue, decoration: Decoration.Bold),
             },
             Commands = new Spectre.Console.Cli.Help.CommandStyle
