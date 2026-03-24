@@ -1,5 +1,13 @@
 # Changelog
 
+## [v2.7.0](https://github.com/devlooped/dotnet-gcm/tree/v2.7.0) (2026-03-24)
+
+[Full Changelog](https://github.com/devlooped/dotnet-gcm/compare/v2.4.3...v2.7.0)
+
+:twisted_rightwards_arrows: Merged:
+
+- Bump git-credential-manager to 2.7.0 and NuGetizer to 1.4.7 [\#42](https://github.com/devlooped/dotnet-gcm/pull/42) (@Copilot)
+
 ## [v2.4.3](https://github.com/devlooped/dotnet-gcm/tree/v2.4.3) (2024-06-16)
 
 [Full Changelog](https://github.com/devlooped/dotnet-gcm/compare/v2.4.2...v2.4.3)
