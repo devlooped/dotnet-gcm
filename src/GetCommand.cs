@@ -1,6 +1,7 @@
 ﻿extern alias CredentialManager;
 using System;
 using System.ComponentModel;
+using System.Threading;
 using System.Threading.Tasks;
 using Spectre.Console;
 using Spectre.Console.Cli;
@@ -25,7 +26,7 @@ public class GetCommand : AsyncCommand<GetCommand.GetSettings>
         }
     }
 
-    public override async Task<int> ExecuteAsync(CommandContext context, GetSettings settings)
+    public override async Task<int> ExecuteAsync(CommandContext context, GetSettings settings, CancellationToken cancellationToken)
     {
         if (settings.Namespace == null)
         {
