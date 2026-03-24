@@ -1,5 +1,6 @@
 ﻿extern alias CredentialManager;
 using System.ComponentModel;
+using System.Threading;
 using System.Threading.Tasks;
 using Spectre.Console;
 using Spectre.Console.Cli;
@@ -24,7 +25,7 @@ public class DeleteCommand : AsyncCommand<DeleteCommand.DeleteSettings>
         }
     }
 
-    public override async Task<int> ExecuteAsync(CommandContext context, DeleteSettings settings)
+    public override async Task<int> ExecuteAsync(CommandContext context, DeleteSettings settings, CancellationToken cancellationToken)
     {
         if (settings.Namespace == null)
         {
