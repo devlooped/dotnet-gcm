@@ -121,20 +121,10 @@
 	sha = a0ae7272f31c766ebb129ea38c11c01df93b6b5d
 	etag = 6c59ab4d008e3221e316c9e3b6e0da155b892680d48cdc400a39d53cb9a12aac
 	weak
-[file ".github/workflows/dotnet-file-core.yml"]
-	url = https://github.com/devlooped/oss/blob/main/.github/workflows/dotnet-file-core.yml
-	sha = d00364faaa84c414b868c0758b9e1a5fc0520dcc
-	etag = d3b7d8ca69e6d22066a2348f02b409e2d6fb900f5039f68940c14e4ce6021826
-	weak
 [file ".github/workflows/triage.yml"]
 	url = https://github.com/devlooped/oss/blob/main/.github/workflows/triage.yml
 	sha = 33000c0c4ab4eb4e0e142fa54515b811a189d55c
 	etag = 013a47739e348f06891f37c45164478cca149854e6cd5c5158e6f073f852b61a
-	weak
-[file ".github/actions/dotnet/action.yml"]
-	url = https://github.com/devlooped/oss/blob/main/.github/actions/dotnet/action.yml
-	sha = f2b690ce307acb76c5b8d7faec1a5b971a93653e
-	etag = 27ea11baa2397b3ec9e643a935832da97719c4e44215cfd135c49cad4c29373f
 	weak
 [file ".github/workflows/dotnet-env.yml"]
 	url = https://github.com/devlooped/oss/blob/main/.github/workflows/dotnet-env.yml
