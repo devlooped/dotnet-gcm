@@ -7,9 +7,6 @@
 [file "readme.md"]
 	url = https://github.com/devlooped/oss/blob/main/readme.md
 	skip
-[file "SponsorLink.sln"]
-	url = https://github.com/devlooped/oss/blob/main/SponsorLink.sln
-	skip
 [file ".editorconfig"]
 	url = https://github.com/devlooped/oss/blob/main/.editorconfig
 	sha = a62c45934ac2952f2f5d54d8aea4a7ebc1babaff
@@ -116,11 +113,6 @@
 [file "src/nuget.config"]
 	url = https://github.com/devlooped/oss/blob/main/src/nuget.config
 	skip
-[file "src/SponsorLink/Analyzer/Properties/launchSettings.json"]
-	url = https://github.com/devlooped/oss/blob/main/src/SponsorLink/Analyzer/Properties/launchSettings.json
-	sha = a0ae7272f31c766ebb129ea38c11c01df93b6b5d
-	etag = 6c59ab4d008e3221e316c9e3b6e0da155b892680d48cdc400a39d53cb9a12aac
-	weak
 [file ".github/workflows/triage.yml"]
 	url = https://github.com/devlooped/oss/blob/main/.github/workflows/triage.yml
 	sha = 33000c0c4ab4eb4e0e142fa54515b811a189d55c
