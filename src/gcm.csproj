@@ -26,7 +26,7 @@
 
   <ItemGroup>
     <PackageReference Include="Devlooped.CredentialManager" Version="2.7.0" Aliases="CredentialManager" />
-    <PackageReference Include="NuGetizer" Version="1.4.7" PrivateAssets="all" />
+    <PackageReference Include="NuGetizer" Version="1.4.9" PrivateAssets="all" />
     <PackageReference Include="Spectre.Console.Analyzer" Version="1.0.0" PrivateAssets="all" />
     <PackageReference Include="Spectre.Console.Cli" Version="0.53.1" />
     <PackageReference Include="git-credential-manager" Version="2.7.0" IncludeAssets="tools" GeneratePathProperty="true" />
