@@ -26,12 +26,12 @@
 
   <ItemGroup>
     <PackageReference Include="Devlooped.CredentialManager" Version="2.7.0" Aliases="CredentialManager" />
-    <PackageReference Include="NuGetizer" Version="1.4.7" PrivateAssets="all" />
+    <PackageReference Include="NuGetizer" Version="1.5.0" PrivateAssets="all" />
     <PackageReference Include="Spectre.Console.Analyzer" Version="1.0.0" PrivateAssets="all" />
     <PackageReference Include="Spectre.Console.Cli" Version="0.53.1" />
     <PackageReference Include="git-credential-manager" Version="2.7.0" IncludeAssets="tools" GeneratePathProperty="true" />
-    <PackageReference Include="ThisAssembly.Git" Version="2.1.2" PrivateAssets="all" />
-    <PackageReference Include="ThisAssembly.Project" Version="2.1.2" PrivateAssets="all" />
+    <PackageReference Include="ThisAssembly.Git" Version="2.1.5" PrivateAssets="all" />
+    <PackageReference Include="ThisAssembly.Project" Version="2.1.5" PrivateAssets="all" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(Pkggit-credential-manager)' != ''">
